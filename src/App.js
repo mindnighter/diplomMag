@@ -1,0 +1,22 @@
+import { useEffect, useState } from 'react';
+import draw from './threeJS';
+const axios = require('axios');
+
+const App = () => {
+  const [data, setData] = useState();
+
+  useEffect(()=>{
+    axios.get('http://localhost:3001/')
+  .then(function (response) {
+    if(!data){
+      setData(response.data.result)
+    } else draw(data);
+  });
+  },[data]);
+
+  
+
+  return <div className="App"></div>
+}
+
+export default App;

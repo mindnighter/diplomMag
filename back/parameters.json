@@ -1,0 +1,31 @@
+[{
+  "_id": {
+    "$oid": "614c556b3579df6e34182c90"
+  },
+  "geometry": "BoxGeometry",
+  "size": {
+    "a": 1,
+    "b": 3,
+    "c": 1
+  },
+  "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+  }
+},{
+  "_id": {
+    "$oid": "61598549ef69544c06ed7c85"
+  },
+  "geometry": "BoxGeometry",
+  "size": {
+    "b": 1,
+    "a": 1,
+    "c": 1
+  },
+  "position": {
+    "x": 3,
+    "y": 0,
+    "z": 0
+  }
+}]
