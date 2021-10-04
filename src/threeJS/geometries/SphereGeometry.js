@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 
-const BoxGeometry = (item) => {
+const SphereGeometry = (item) => {
+  console.log(item);
   const geometry = new THREE[item.geometry](
     item.size.a,
     item.size.b,
@@ -9,4 +10,4 @@ const BoxGeometry = (item) => {
   return geometry;
 };
 
-export default BoxGeometry;
+export default SphereGeometry;

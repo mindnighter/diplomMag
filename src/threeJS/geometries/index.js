@@ -1,5 +1,6 @@
-import BoxGeometry from "./BoxGeometry";
+import BoxGeometry from './BoxGeometry';
+import SphereGeometry from './SphereGeometry';
 
-const geometries = {BoxGeometry};
+const geometries = { BoxGeometry, SphereGeometry };
 
 export default geometries;
