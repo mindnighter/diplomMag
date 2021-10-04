@@ -56,7 +56,7 @@ const draw = (data) => {
     scene.add(figure);
   });
 
-  camera.position.z = 5;
+  camera.position.z = 10;
 
   const animate = function () {
     requestAnimationFrame(animate);
