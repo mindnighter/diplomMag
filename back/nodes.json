@@ -1,0 +1,80 @@
+[{
+  "_id": {
+    "$oid": "6161a67ec4920f29ad035622"
+  },
+  "name": "v-1",
+  "node": [
+    {
+      "_id": {
+        "$oid": "614c556b3579df6e34182c90"
+      },
+      "geometry": "CylinderGeometry",
+      "size": {
+        "a": 2,
+        "b": 2,
+        "c": 5,
+        "d": 32
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "_id": {
+        "$oid": "61598549ef69544c06ed7c85"
+      },
+      "geometry": "BoxGeometry",
+      "size": {
+        "b": 1,
+        "a": 1,
+        "c": 1
+      },
+      "position": {
+        "x": 4,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "_id": {
+        "$oid": "615ad843c4920f29ad03561c"
+      },
+      "geometry": "SphereGeometry",
+      "size": {
+        "a": 5,
+        "b": 32,
+        "c": 32
+      },
+      "position": {
+        "z": -15,
+        "y": 5,
+        "x": 0
+      }
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "6161a8cbc4920f29ad035629"
+  },
+  "name": "v-2",
+  "node": [
+    {
+      "geometry": "SphereGeometry",
+      "size": {
+        "a": 7,
+        "b": 32,
+        "c": 32
+      },
+      "position": {
+        "z": 0,
+        "y": 0,
+        "x": 0
+      },
+      "_id": {
+        "$oid": "9161a9edc4920f29ad035630"
+      }
+    }
+  ]
+}]
