@@ -7,11 +7,11 @@ const clone = (name, data, nameList) => {
     } else {
       alert('cloned');
 
-      axios.post('http://localhost:3001/',{name: name, node: data},{headers:{name: name, node: data}},).then(function (response) {
+      axios.post('http://localhost:3001/',{name: name, node: data}).then(function (response) {
         console.log(response);
       });
     }
-    //setTimeout(()=>window.location.reload(),100)
+    setTimeout(()=>window.location.reload(),100)
   }
 };
 
