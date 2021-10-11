@@ -2,28 +2,45 @@ import * as THREE from 'three';
 import TrackballControls from 'three-trackballcontrols';
 import * as dat from 'dat.gui';
 
-import geometries from './geometries/index';
-
-const figurePosition = (figure, x, y, z) => {
-  x && (figure.position.x = x);
-  y && (figure.position.y = y);
-  z && (figure.position.z = z);
-};
+import build from './utils/build';
+import clone from './utils/clone'
 
 const gui = new dat.GUI();
-var ControllPanel = function () {
-  this.mesh = false;
-  this.range = 45;
+
+let data;
+let nameList;
+
+const ControllPanel = function () {
+  this.wireframe = false;
+  this.node = '';
+  this['name for clone'] = '';
+  this.ADD = () => clone(this['name for clone'], data, nameList);
 };
 
-var controlled = new ControllPanel();
-var controllerDisplay = gui.add(controlled, 'mesh');
+let name;
 let wireframe = false;
 
-const draw = (data) => {
-  console.log(data);
+const controlled = new ControllPanel();
+const wireframeController = gui.add(controlled, 'wireframe');
+
+const draw = (nodes) => {
+    nameList = nodes.map((item) => item.name)
+  const dropdownController = gui.add(
+    controlled,
+    'node',
+      nameList
+  );
+  name = nodes[0].name;
+  dropdownController.setValue(name);
+  data = nodes.filter((item) => item.name === name)[0].node;
+
+  gui.add(controlled, 'name for clone').onFinishChange(function (value) {
+    this['name for clone'] = value;
+  });
+ gui.add(controlled, 'ADD');
 
   const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0xffffff);
   const camera = new THREE.PerspectiveCamera(
     75,
     window.innerWidth / window.innerHeight,
@@ -44,19 +61,21 @@ const draw = (data) => {
   controls.rotateSpeed = 6;
   controls.update();
 
-  let material = new THREE.MeshBasicMaterial({
-    color: 0x00ff00,
-    wireframe: wireframe
+  const color = 0xffffff;
+  const intensity = 1;
+  const light = new THREE.DirectionalLight(color, intensity);
+  light.position.set(45, 100, 25);
+  light.target.position.set(0, 0, 0);
+  scene.add(light);
+  scene.add(light.target);
+
+  let material = new THREE.MeshPhongMaterial({
+    color: 0xaaaaaa
   });
 
-  data.map((item) => {
-    const geometry = geometries[item.geometry](item);
-    const figure = new THREE.Mesh(geometry, material);
-    figurePosition(figure, item.position.x, item.position.y, item.position.z);
-    scene.add(figure);
-  });
+  build(data, scene, material, light);
 
-  camera.position.z = 10;
+  camera.position.z = 15;
 
   const animate = function () {
     requestAnimationFrame(animate);
@@ -66,26 +85,30 @@ const draw = (data) => {
     renderer.render(scene, camera);
   };
 
-  controllerDisplay.onChange(function () {
-    this.mesh = !this.mesh;
-    wireframe = this.mesh;
-    material = new THREE.MeshBasicMaterial({
-      color: 0x00ff00,
-      wireframe: wireframe
-    });
-    while (scene.children.length) {
-      scene.remove(scene.children[0]);
-    }
-    data.map((item) => {
-      const geometry = geometries[item.geometry](item);
-      const figure = new THREE.Mesh(geometry, material);
-      figurePosition(figure, item.position.x, item.position.y, item.position.z);
-      scene.add(figure);
-    });
+  animate();
+
+  wireframeController.onChange(function () {
+    this.wireframe = !this.wireframe;
+    wireframe = this.wireframe;
+    wireframe
+      ? (material = new THREE.MeshBasicMaterial({
+          color: 0x0000aa,
+          wireframe: wireframe
+        }))
+      : (material = new THREE.MeshPhongMaterial({
+          color: 0xaaaaaa
+        }));
+    data = nodes.filter((item) => item.name === name)[0].node;
+    build(data, scene, material, light);
     animate();
   });
 
-  animate();
+  dropdownController.onChange(function (node) {
+    name = node;
+    data = nodes.filter((item) => item.name === name)[0].node;
+    build(data, scene, material, light);
+    animate();
+  });
 };
 
 export default draw;

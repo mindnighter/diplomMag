@@ -1,7 +1,6 @@
 import * as THREE from 'three';
 
 const SphereGeometry = (item) => {
-  console.log(item);
   const geometry = new THREE[item.geometry](
     item.size.a,
     item.size.b,
