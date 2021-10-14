@@ -1,0 +1,52 @@
+[{
+  "_id": {
+    "$oid": "6161a67ec4920f29ad035622"
+  },
+  "name": "Main",
+  "node": [
+    {
+      "geometry": "Pipe",
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "size": {
+        "radius": 137,
+        "holeRadius": 129.2,
+        "height": 43,
+        "segments": 32
+      }
+    },
+    {
+      "geometry": "Pipe",
+      "position": {
+        "x": 0,
+        "y": -21,
+        "z": 0
+      },
+      "size": {
+        "radius": 137,
+        "holeRadius": 117,
+        "height": 13,
+        "segments": 32
+      }
+    },
+    {
+      "geometry": "CylinderGeometry",
+      "position": {
+        "x": 0,
+        "y": -41,
+        "z": 0
+      },
+      "size": {
+        "a": 117,
+        "b": 58.5,
+        "c": 27,
+        "d": 32,
+        "e": 32,
+        "f": true
+      }
+    }
+  ]
+}]

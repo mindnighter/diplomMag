@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import text from './text';
+import geometries from '../geometries/index'
 
 const figurePosition = (figure, x, y, z) => {
   x && (figure.position.x = x);
@@ -11,17 +12,12 @@ const build = (data, scene, material, light) => {
   while (scene.children.length) {
     scene.remove(scene.children[0]);
   }
-  light.position.set(45, 100, 25);
+  light.position.set(4500, 10000, 2500);
   light.target.position.set(0, 0, 0);
   scene.add(light);
   scene.add(light.target);
   data.map((item) => {
-    const geometry = new THREE[item.geometry](
-      item.size.a,
-      item.size.b,
-      item.size.c,
-      item.size.d
-    );
+    const geometry = geometries[item.geometry](item);
     const figure = new THREE.Mesh(geometry, material);
     figurePosition(figure, item.position.x, item.position.y, item.position.z);
     scene.add(figure);

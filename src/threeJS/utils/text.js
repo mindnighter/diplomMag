@@ -8,7 +8,7 @@ const text = (boundingNumber, scene, item) => {
     10,
     '#00ff00'
   );
-  sprite.textHeight = 0.5;
+  sprite.textHeight = 10;
   sprite.position.x = boundingNumber.max.x + item.position.x;
   sprite.position.y = boundingNumber.max.y + item.position.y;
   sprite.position.z = boundingNumber.max.z + item.position.z;

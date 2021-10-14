@@ -65,7 +65,7 @@ const draw = (nodes) => {
   const color = 0xffffff;
   const intensity = 1;
   const light = new THREE.DirectionalLight(color, intensity);
-  light.position.set(45, 100, 25);
+  light.position.set(4500, 10000, 2500);
   light.target.position.set(0, 0, 0);
   scene.add(light);
   scene.add(light.target);
@@ -76,7 +76,7 @@ const draw = (nodes) => {
 
   build(data, scene, material, light);
 
-  camera.position.z = 15;
+  camera.position.z = 500;
 
   const animate = function () {
     requestAnimationFrame(animate);

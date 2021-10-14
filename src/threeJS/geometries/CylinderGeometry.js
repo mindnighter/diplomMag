@@ -6,6 +6,8 @@ const CylinderGeometry = (item) => {
         item.size.b,
         item.size.c,
         item.size.d,
+        item.size.e,
+        item.size.f,
     );
     return geometry;
 };

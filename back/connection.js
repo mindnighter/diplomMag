@@ -22,7 +22,7 @@ setInterval(
  () =>
   mongoClient.connect(function (err, client) {
     const db = client.db('diplom');
-    const collection = db.collection('test');
+    const collection = db.collection('Main');
 
     if (err) return console.log(err);
 
@@ -41,7 +41,7 @@ app.post('/', function (req, res) {
   const { name, node } = req.body;
   mongoClient.connect(function (err, client) {
     const db = client.db('diplom');
-    const collection = db.collection('test');
+    const collection = db.collection('Main');
 
     if (err) return console.log(err);
 
