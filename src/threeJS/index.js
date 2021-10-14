@@ -3,18 +3,23 @@ import TrackballControls from 'three-trackballcontrols';
 import * as dat from 'dat.gui';
 
 import build from './utils/build';
-import clone from './utils/clone'
+import clone from './utils/clone';
+import updateDatDropdown from './utils/updateDropdown';
 
 const gui = new dat.GUI();
 
 let data;
 let nameList;
+let dropdownController;
 
 const ControllPanel = function () {
   this.wireframe = false;
   this.node = '';
   this['name for clone'] = '';
-  this.ADD = () => clone(this['name for clone'], data, nameList);
+  this.ADD = () => {
+    nameList = clone(this['name for clone'], data, nameList);
+    updateDatDropdown(dropdownController , nameList);
+  };
 };
 
 let name;
@@ -24,12 +29,8 @@ const controlled = new ControllPanel();
 const wireframeController = gui.add(controlled, 'wireframe');
 
 const draw = (nodes) => {
-    nameList = nodes.map((item) => item.name)
-  const dropdownController = gui.add(
-    controlled,
-    'node',
-      nameList
-  );
+  nameList = nodes.map((item) => item.name);
+  dropdownController = gui.add(controlled, 'node', nameList);
   name = nodes[0].name;
   dropdownController.setValue(name);
   data = nodes.filter((item) => item.name === name)[0].node;
@@ -37,7 +38,7 @@ const draw = (nodes) => {
   gui.add(controlled, 'name for clone').onFinishChange(function (value) {
     this['name for clone'] = value;
   });
- gui.add(controlled, 'ADD');
+  gui.add(controlled, 'ADD');
 
   const scene = new THREE.Scene();
   scene.background = new THREE.Color(0xffffff);

@@ -11,7 +11,8 @@ const clone = (name, data, nameList) => {
         console.log(response);
       });
     }
-    setTimeout(()=>window.location.reload(),100)
+    return [...nameList, name];
+    //setTimeout(()=>window.location.reload(),100)
   }
 };
 
