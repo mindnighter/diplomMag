@@ -49,6 +49,18 @@ app.post('/', function (req, res) {
   });
 });
 
+app.post('/save', function (req, res) {
+  const { name, node } = req.body;
+  mongoClient.connect(function (err, client) {
+    const db = client.db('diplom');
+    const collection = db.collection('Main');
+
+    if (err) return console.log(err);
+
+    collection.replaceOne({name: name}, {name: name, node: node})
+  });
+});
+
 app.listen(3001, function () {
   console.log('conected to port 3001');
 });

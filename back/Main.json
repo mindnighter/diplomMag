@@ -1,52 +1,182 @@
-[{
-  "_id": {
-    "$oid": "6161a67ec4920f29ad035622"
-  },
-  "name": "Main",
-  "node": [
-    {
-      "geometry": "Pipe",
-      "position": {
-        "x": 0,
-        "y": 0,
-        "z": 0
-      },
-      "size": {
-        "radius": 137,
-        "holeRadius": 129.2,
-        "height": 43,
-        "segments": 32
-      }
+{
+    "_id": {
+        "$oid": "6161a67ec4920f29ad035622"
     },
-    {
-      "geometry": "Pipe",
-      "position": {
-        "x": 0,
-        "y": -21,
-        "z": 0
-      },
-      "size": {
-        "radius": 137,
-        "holeRadius": 117,
-        "height": 13,
-        "segments": 32
-      }
-    },
-    {
-      "geometry": "CylinderGeometry",
-      "position": {
-        "x": 0,
-        "y": -41,
-        "z": 0
-      },
-      "size": {
-        "a": 117,
-        "b": 58.5,
-        "c": 27,
-        "d": 32,
-        "e": 32,
-        "f": true
-      }
-    }
-  ]
-}]
+    "name": "Main",
+    "node": [{
+        "geometry": "Pipe",
+        "position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+        },
+        "size": {
+            "radius": 137,
+            "holeRadius": 129.2,
+            "height": 43,
+            "segments": 32
+        }
+    }, {
+        "geometry": "Pipe",
+        "position": {
+            "x": 0,
+            "y": -21,
+            "z": 0
+        },
+        "size": {
+            "radius": 137,
+            "holeRadius": 117,
+            "height": 13,
+            "segments": 32
+        }
+    }, {
+        "geometry": "CylinderGeometry",
+        "position": {
+            "x": 0,
+            "y": -41,
+            "z": 0
+        },
+        "size": {
+            "a": 117,
+            "b": 58.5,
+            "c": 36,
+            "d": 32,
+            "e": 32,
+            "f": true
+        }
+    }, {
+        "geometry": "Pipe",
+        "position": {
+            "x": 0,
+            "y": -41,
+            "z": 0
+        },
+        "size": {
+            "radius": 137,
+            "holeRadius": 117,
+            "height": 36,
+            "segments": 32
+        }
+    }, {
+        "geometry": "CylinderGeometry",
+        "position": {
+            "x": 0,
+            "y": -59,
+            "z": 0
+        },
+        "size": {
+            "a": 117,
+            "b": 58.5,
+            "c": 1,
+            "d": 32,
+            "e": 32,
+            "f": true
+        }
+    }, {
+        "geometry": "Pipe",
+        "position": {
+            "x": 0,
+            "y": -88,
+            "z": 0
+        },
+        "size": {
+            "radius": 58.5,
+            "holeRadius": 55,
+            "height": 58.5,
+            "segments": 32
+        }
+    }, {
+        "geometry": "Pipe",
+        "position": {
+            "x": 0,
+            "y": -152,
+            "z": 0
+        },
+        "size": {
+            "radius": 55,
+            "holeRadius": 50,
+            "height": 70,
+            "segments": 32
+        }
+    }, {
+        "geometry": "Pipe",
+        "position": {
+            "x": 0,
+            "y": -202,
+            "z": 0
+        },
+        "size": {
+            "radius": 168,
+            "holeRadius": 15,
+            "height": 30,
+            "segments": 32
+        }
+    }, {
+        "geometry": "Pipe",
+        "position": {
+            "x": 80,
+            "y": -123,
+            "z": 0
+        },
+        "size": {
+            "radius": 10.5,
+            "holeRadius": 10,
+            "height": 128,
+            "segments": 16
+        }
+    }, {
+        "geometry": "Pipe",
+        "position": {
+            "x": -80,
+            "y": -123,
+            "z": 0
+        },
+        "size": {
+            "radius": 10.5,
+            "holeRadius": 10,
+            "height": 128,
+            "segments": 16
+        }
+    }, {
+        "geometry": "PipesOnRound",
+        "N": 6,
+        "R": 128,
+        "parameters": {
+            "position": -123,
+            "size": {
+                "radius": 4,
+                "holeRadius": 3,
+                "height": 128,
+                "segments": 16
+            }
+        }
+    }, {
+        "geometry": "PipesOnRound",
+        "N": 6,
+        "R": 168,
+        "rotation": 90,
+        "parameters": {
+            "position": -202,
+            "size": {
+                "radius": 15,
+                "holeRadius": 12,
+                "height": 47,
+                "segments": 16
+            }
+        }
+    }, {
+        "geometry": "PipesOnRound",
+        "N": 6,
+        "R": 215,
+        "rotation": 90,
+        "parameters": {
+            "position": -202,
+            "size": {
+                "radius": 30,
+                "holeRadius": 13,
+                "height": 47,
+                "segments": 16
+            }
+        }
+    }]
+}

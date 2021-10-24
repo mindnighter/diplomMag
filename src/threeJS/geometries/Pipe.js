@@ -9,8 +9,6 @@ const Pipe = (item) => {
         false
     );
     return geometry;
-  
-  return geometry;
 };
 
 export default Pipe;
@@ -117,9 +115,9 @@ function HollowCylinderBufferGeometry(radius, holeRadius, height, segments, open
     // build geometry
 
     this.setIndex(indices);
-    this.addAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
-    this.addAttribute('normal', new THREE.Float32BufferAttribute(normals, 3));
-    this.addAttribute('uv', new THREE.Float32BufferAttribute(uvs, 2));
+    this.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+    this.setAttribute('normal', new THREE.Float32BufferAttribute(normals, 3));
+    this.setAttribute('uv', new THREE.Float32BufferAttribute(uvs, 2));
 
     function generateTorso(isOuter) {
 
@@ -217,14 +215,12 @@ function HollowCylinderBufferGeometry(radius, holeRadius, height, segments, open
         var indexStart = index;
         var segment = 0;
 
-        var uv = new THREE.Vector2();
-
         var vertex = new THREE.Vector3();
         var sign = isTop ? 1 : -1;
         var groupCount = 0;
 
         for (var heightIndex = 0; heightIndex < 2; heightIndex++) {
-            var activeRadius = heightIndex == 0 ? holeRadius : radius;
+            var activeRadius = heightIndex === 0 ? holeRadius : radius;
             for (var segmentIndex = 0; segmentIndex <= segments; segmentIndex++) {
 
                 segment = segmentIndex / segments * thetaLength + thetaStart;
@@ -251,7 +247,7 @@ function HollowCylinderBufferGeometry(radius, holeRadius, height, segments, open
 
         // Generate Indices
 
-        for (var segmentIndex = 0; segmentIndex < segments; segmentIndex++) {
+        for (let segmentIndex = 0; segmentIndex < segments; segmentIndex++) {
 
             segment = segmentIndex + indexStart;
 
@@ -290,9 +286,9 @@ function HollowCylinderBufferGeometry(radius, holeRadius, height, segments, open
         var cosTheta = Math.cos(theta);
         for (var y = 0; y < 2; y++) {
             for (var x = 0; x < 2; x++) {
-                var activeRadius = x == 0 ? radius : holeRadius;
+                var activeRadius = x === 0 ? radius : holeRadius;
                 vertex.x = activeRadius * sinTheta;
-                vertex.y = halfHeight * (y == 0 ? -1 : 1);
+                vertex.y = halfHeight * (y === 0 ? -1 : 1);
                 vertex.z = activeRadius * cosTheta;
 
                 vertices.push(vertex.x, vertex.y, vertex.z);
