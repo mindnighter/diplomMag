@@ -29,13 +29,13 @@ const build = (data, scene, material, light, BoundingBox,  BoundingBoxAll, iter,
       } else {
         scene.add(figure);
       }
-      if(BoundingBoxAll){ComputeBoundingBoxForAll(figure, i, data.length, scene);}
-      if(BoundingBox && iter === i){
-        const boundingBox = new THREE.BoxHelper(figure, 0xff0000);
+      ComputeBoundingBoxForAll(figure, i, data.length, scene, BoundingBoxAll); 
+      const boundingBox = new THREE.BoxHelper(figure, 0xff0000);
         boundingBox.update();
-        scene.add(boundingBox);
         const boundingNumber = figure.geometry.boundingBox.clone();
-        text(boundingNumber, scene, item);
+        text(boundingNumber, scene, item, i, BoundingBox && iter === i);
+      if(BoundingBox && iter === i){
+        scene.add(boundingBox);
       }
     }
     

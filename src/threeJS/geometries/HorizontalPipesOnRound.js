@@ -23,20 +23,20 @@ const HorizontalPipesOnRound = (item, scene, material, BoundingBox, BoundingBoxA
       } else {
         scene.add(figure);
       }
-      if(BoundingBoxAll){ComputeBoundingBoxForAll(figure, iter, n, scene, i === N-1, !!rotation);}
-      if(BoundingBox && dataIter === iter){
-        const positions = {
-          position: {
-            x: PX,
-            y: item.parameters.position,
-            z: PZ
-          }
+      ComputeBoundingBoxForAll(figure, iter, n, scene, BoundingBoxAll, i === N-1, !!rotation);
+      const positions = {
+        position: {
+          x: PX,
+          y: item.parameters.position,
+          z: PZ
         }
-        const boundingBox = new THREE.BoxHelper(figure, 0xff0000);
-        boundingBox.update();
+      }
+      const boundingBox = new THREE.BoxHelper(figure, 0xff0000);
+      boundingBox.update();
+      const boundingNumber = figure.geometry.boundingBox.clone();
+      text(boundingNumber, scene, positions, iter, BoundingBox  && dataIter === iter);
+      if(BoundingBox && dataIter === iter){
         scene.add(boundingBox);
-        const boundingNumber = figure.geometry.boundingBox.clone();
-        text(boundingNumber, scene, positions );
       }
   }
  return item;

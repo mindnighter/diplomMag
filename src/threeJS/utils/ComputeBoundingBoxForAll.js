@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import text from './text';
 
-const BoundingForAll = {
+export const BoundingForAll = {
     min: {
       x: 0,
       y: 0,
@@ -41,28 +41,27 @@ const Compute = (boundingNumber, figure, rotate) =>{
     if(MaxZ > BoundingForAll.max.z){BoundingForAll.max.z = MaxZ}
 }
 
-const ComputeBoundingBoxForAll = (figure, i, n, scene, last = true, rotate) => {
+const ComputeBoundingBoxForAll = (figure, i, n, scene, show, last = true, rotate) => {
     const boundingBox = new THREE.BoxHelper(figure, 0xff0000);
     boundingBox.update();
     const boundingNumber = figure.geometry.boundingBox.clone();
     Compute(boundingNumber, figure, rotate);
-    if(++i === n && last){
-        const x = Math.abs(BoundingForAll.max.x) + Math.abs(BoundingForAll.min.x);
-        const y = Math.abs(BoundingForAll.max.y) + Math.abs(BoundingForAll.min.y);
-        const z = Math.abs(BoundingForAll.max.z) + Math.abs(BoundingForAll.min.z);
-        const geometry = new THREE.BoxGeometry(x, y, z)
-        var material = new THREE.MeshLambertMaterial({color: 0x0000ff, transparent: true, opacity: 0.1});
-        const box = new THREE.Mesh(geometry, material);
-        box.position.x = (BoundingForAll.min.x+BoundingForAll.max.x)/2;
-        box.position.y = (BoundingForAll.min.y+BoundingForAll.max.y)/2;
-        box.position.z = (BoundingForAll.min.z+BoundingForAll.max.z)/2;
-        //scene.add(box)
-        const boundingBox = new THREE.BoxHelper(box, 0xff0000);
-        boundingBox.update();
-        scene.add(boundingBox);
-        console.log(BoundingForAll)
-        text(BoundingForAll, scene, {position:{x:0,y:box.position.y,z:-box.position.z}});
+    const x = Math.abs(BoundingForAll.max.x) + Math.abs(BoundingForAll.min.x);
+    const y = Math.abs(BoundingForAll.max.y) + Math.abs(BoundingForAll.min.y);
+    const z = Math.abs(BoundingForAll.max.z) + Math.abs(BoundingForAll.min.z);
+    const geometry = new THREE.BoxGeometry(x, y, z)
+    var material = new THREE.MeshLambertMaterial({color: 0x0000ff, transparent: true, opacity: 0.1});
+    const box = new THREE.Mesh(geometry, material);
+    box.position.x = (BoundingForAll.min.x+BoundingForAll.max.x)/2;
+    box.position.y = (BoundingForAll.min.y+BoundingForAll.max.y)/2;
+    box.position.z = (BoundingForAll.min.z+BoundingForAll.max.z)/2;
+    //scene.add(box)
+    const boundingBox2 = new THREE.BoxHelper(box, 0xff0000);
+    boundingBox.update();
+    if(++i === n && last && show){
+        scene.add(boundingBox2);
     }
+    text(BoundingForAll, scene, {position:{x:0,y:box.position.y,z:-box.position.z}}, 'All node', ++i === n && last && show);
 }
 
 export default ComputeBoundingBoxForAll;

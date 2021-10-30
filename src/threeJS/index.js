@@ -4,7 +4,27 @@ import * as dat from 'dat.gui';
 
 import build from './utils/build';
 import clone from './utils/clone';
+import download from './utils/download';
 import updateDatDropdown from './utils/updateDropdown';
+
+import {textArr} from './utils/text';
+import {BoundingForAll} from './utils/ComputeBoundingBoxForAll';
+
+export const remove = (obj, all = false) => {
+  for (var variableKey in obj){
+    if (obj.hasOwnProperty(variableKey)){
+        delete obj[variableKey];
+    }
+  }
+  if(all){
+    obj.min = {x: 0,
+      y: 0,
+      z: 0}
+    obj.max = {x: 0,
+      y: 0,
+      z: 0}
+  }
+}
 
 const gui = new dat.GUI();
 
@@ -32,6 +52,9 @@ const ControllPanel = function () {
     nameList = clone(this['name of copy'], data, nameList);
     updateDatDropdown(dropdownController , nameList);
   };
+  this['generate report'] = () => {
+    download(`report ${name}`, data)
+  }
 };
 
 const controlled = new ControllPanel();
@@ -49,6 +72,7 @@ if(controllers) {
   hideController = gui.add(controlled, 'hide');
   nameController = gui.add(controlled, 'name of copy');
   gui.add(controlled, 'COPY');
+  gui.add(controlled, 'generate report');
 }
 
 dropdownController.setValue(name);
@@ -124,6 +148,8 @@ dropdownController.setValue(name);
     name = node;
     data = nodes.filter((item) => item.name === name)[0].node;
     sessionStorage.setItem('index', nameList.indexOf(node));
+    remove(textArr);
+    remove(BoundingForAll, true);
     start(); 
   });
 
